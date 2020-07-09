@@ -5,3 +5,5 @@
 - how to use bloc pattern
 - how to use http client
 </pre>
+
+* api key was removed
