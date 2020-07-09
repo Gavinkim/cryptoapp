@@ -57,10 +57,10 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
-  crypto:
+  blocs.crypto:
     dependency: transitive
     description:
-      name: crypto
+      name: blocs.crypto
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.4"

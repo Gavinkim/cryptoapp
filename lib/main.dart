@@ -9,13 +9,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'CryptoApp',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.black,
-        accentColor: Colors.tealAccent,
-      ),
-      home: HomeScreen()
-    );
+        title: 'CryptoApp',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primaryColor: Colors.black,
+          accentColor: Colors.tealAccent,
+        ),
+        home: HomeScreen());
   }
 }
