@@ -24,6 +24,6 @@ class Coin extends Equatable {
     return Coin(
         name: json['CoinInfo']['Name'] as String,
         fullName: json['CoinInfo']['FullName'] as String,
-        price: json['CoinInfo']['USD']['PRICE'] as num);
+        price: json['RAW']['USD']['PRICE'] as num);
   }
 }
