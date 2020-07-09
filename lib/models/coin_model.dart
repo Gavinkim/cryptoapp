@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 class Coin extends Equatable {
   final String name;
   final String fullName;
-  final double price;
+  final num price;
 
   const Coin(
       {@required this.name, @required this.fullName, @required this.price});

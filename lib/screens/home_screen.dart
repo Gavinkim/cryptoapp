@@ -21,12 +21,13 @@ class _HomeScreenState extends State<HomeScreen> {
           return Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Theme.of(context).primaryColor,
-                    Colors.grey[900],
-                  ]),
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Theme.of(context).primaryColor,
+                  Colors.grey[900],
+                ],
+              ),
             ),
             child: _buildBody(state),
           );
@@ -50,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: NotificationListener<ScrollNotification>(
           onNotification: (notification) =>
-              __onScrollNotification(notification, state),
+              _onScrollNotification(notification, state),
           child: ListView.builder(
             controller: _scrollController,
             itemCount: state.coins.length,
@@ -80,8 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 trailing: Text(
                   '\$${coin.price.toStringAsFixed(4)}',
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontWeight: FontWeight.w600),
+                    color: Theme.of(context).accentColor,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               );
             },
@@ -91,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
     } else if (state is CryptoError) {
       return Center(
         child: Text(
-          'Error loading coins!\n Please check your connection.',
+          'Error loading coins!\nPlease check your connection',
           style: TextStyle(
             color: Theme.of(context).accentColor,
             fontSize: 18.0,
@@ -102,9 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  bool __onScrollNotification(ScrollNotification notif, CryptoLoaded state) {
-    if (notif is ScrollNotification &&
-        _scrollController.position.extentAfter == 0) {
+  bool _onScrollNotification(ScrollNotification notif, CryptoLoaded state) {
+    if (notif is ScrollEndNotification && _scrollController.position.extentAfter == 0) {
       context.bloc<CryptoBloc>().add(LoadMoreCoins(coins: state.coins));
     }
     return false;

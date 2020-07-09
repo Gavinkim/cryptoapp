@@ -9,22 +9,27 @@ class CryptoRepository extends BaseCryptoRepository {
   static const int perPage = 20;
   final http.Client _httpClient;
 
-  CryptoRepository({http.Client httpClient}) : _httpClient = httpClient ?? http.Client();
+  CryptoRepository({http.Client httpClient})
+      : _httpClient = httpClient ?? http.Client();
 
   @override
   Future<List<Coin>> getTopCoins(int page) async {
     List<Coin> coins = [];
-    String requestUrl = '$_baseUrl/data/top/totalvolfull?limit=$perPage&tsym=USD&page=$page&api_key=e8b6f2282d7933b6a45f72be95784e27d5e8d3ae4d71f0002e55ccae149f528e';
-    try{
+    String requestUrl =
+        '$_baseUrl/data/top/totalvolfull?limit=$perPage&tsym=USD&page=$page&api_key=e8b6f2282d7933b6a45f72be95784e27d5e8d3ae4d71f0002e55ccae149f528e';
+    try {
       final response = await _httpClient.get(requestUrl);
-      if(response.statusCode == 200){
-        Map<String,dynamic> data = json.decode(response.body);
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = json.decode(response.body);
         List<dynamic> coinList = data['Data'];
-        coinList.forEach((json) => coins.add(Coin.fromJson(json)),);
+        coinList.forEach(
+          (json) => coins.add(Coin.fromJson(json)),
+        );
       }
       return coins;
-    }catch(err){
-      throw(err);
+    } catch (err) {
+      print('error>>: $err');
+//      throw(err);
     }
   }
 
